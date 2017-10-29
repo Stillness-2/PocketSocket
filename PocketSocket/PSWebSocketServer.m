@@ -454,6 +454,8 @@ void PSWebSocketServerAcceptCallback(CFSocketRef s, CFSocketCallBackType type, C
             }];
             
             if(![PSWebSocket isWebSocketRequest:request]) {
+                
+                
                 [self disconnectConnectionGracefully:connection
                                           statusCode:501 description:@"WebSockets only, please"
                                              headers:nil];
