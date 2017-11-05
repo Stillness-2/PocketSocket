@@ -35,6 +35,7 @@
 - (void)server:(PSWebSocketServer *)server webSocketDidFlushOutput:(PSWebSocket *)webSocket;
 - (BOOL)server:(PSWebSocketServer *)server acceptWebSocketWithRequest:(NSURLRequest *)request;
 - (BOOL)server:(PSWebSocketServer *)server acceptWebSocketWithRequest:(NSURLRequest *)request address:(NSData *)address trust:(SecTrustRef)trust response:(NSHTTPURLResponse **)response;
+- (NSHTTPURLResponse *)server:(PSWebSocketServer *)server responseOnSimpleGetRequest:(NSURLRequest *)request address:(NSData *)address trust:(SecTrustRef)trust responseBody:(NSData **)responseBody;
 @end
 
 @interface PSWebSocketServer : NSObject
