@@ -586,6 +586,7 @@ void PSWebSocketServerAcceptCallback(CFSocketRef s, CFSocketCallBackType type, C
                 break;
             }
             case NSStreamEventErrorOccurred: {
+                [self notifyDelegateConnection:connection didFailWithError:stream.streamError];
                 [self disconnectConnection:connection];
                 break;
             }
@@ -660,6 +661,15 @@ void PSWebSocketServerAcceptCallback(CFSocketRef s, CFSocketCallBackType type, C
         }
     }];
 }
+
+- (void)notifyDelegateConnection:(PSWebSocketServerConnection *)connection didFailWithError:(NSError *)error {
+    [self executeDelegate:^{
+        if ([_delegate respondsToSelector: @selector(server:connectionId:didFailWithError:)]) {
+            [_delegate server:self connectionId:connection.identifier didFailWithError:error];
+        }
+    }];
+}
+
 - (BOOL)askDelegateShouldAcceptConnection:(PSWebSocketServerConnection *)connection
                                   request: (NSURLRequest *)request
                                  response:(NSHTTPURLResponse **)outResponse {

@@ -36,6 +36,8 @@
 - (BOOL)server:(PSWebSocketServer *)server acceptWebSocketWithRequest:(NSURLRequest *)request;
 - (BOOL)server:(PSWebSocketServer *)server acceptWebSocketWithRequest:(NSURLRequest *)request address:(NSData *)address trust:(SecTrustRef)trust response:(NSHTTPURLResponse **)response;
 - (NSHTTPURLResponse *)server:(PSWebSocketServer *)server responseOnSimpleGetRequest:(NSURLRequest *)request address:(NSData *)address trust:(SecTrustRef)trust responseBody:(NSData **)responseBody;
+- (void)server:(PSWebSocketServer *)server connectionId:(NSString *)identifier didFailWithError:(NSError *)error;
+
 @end
 
 @interface PSWebSocketServer : NSObject
