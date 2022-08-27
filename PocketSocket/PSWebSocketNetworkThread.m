@@ -57,7 +57,7 @@
         _runLoop = [NSRunLoop currentRunLoop];
         dispatch_group_leave(_waitGroup);
         
-        NSTimer *timer = [[NSTimer alloc] initWithFireDate:[NSDate distantFuture] interval:0.0 target:self selector:@selector(self) userInfo:nil repeats:NO];
+        NSTimer *timer = [[NSTimer alloc] initWithFireDate:[NSDate distantFuture] interval:0.0 target:self selector:@selector(timerFireMethod:) userInfo:nil repeats:NO];
         [_runLoop addTimer:timer forMode:NSDefaultRunLoopMode];
         
         NSRunLoop *runLoop = _runLoop;
@@ -68,5 +68,8 @@
     }
 }
 
+- (void)timerFireMethod:(NSTimer *)timer {
+    // no-op
+}
 
 @end
